@@ -20,13 +20,13 @@ func main() {
 	fmt.Println("Importing conf...")
 
 	var conf Config
-	if _, err := toml.DecodeFile("conf.toml", &conf); err != nil {
+	if _, err := toml.DecodeFile("./conf.toml", &conf); err != nil {
 		panic(err)
 	}
 
 	fmt.Println("Server starting on port 443...")
 
-	conStr := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=require", conf.DBuser, conf.DBpass, conf.DBname)
+	conStr := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", conf.DBuser, conf.DBpass, conf.DBname)
 
 	db := models.NewDB(conStr)
 	env := &router.Env{db}
